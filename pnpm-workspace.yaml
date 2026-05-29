@@ -1,0 +1,10 @@
+packages:
+  - "apps/*"
+  - "packages/*"
+# allow specific dependencies to run install and build scripts
+allowBuilds:
+  '@nestjs/core': false
+  '@prisma/engines': true
+  prisma: true
+  sharp: false
+  unrs-resolver: false

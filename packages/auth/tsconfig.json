@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "esModuleInterop": true,
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "outDir": "dist",
+    "rootDir": "src",
+    "strict": true,
+    "target": "ES2023",
+    "types": ["node"],
+  },
+  "include": ["src"],
+  "exclude": ["node_modules", "dist"]
+}
