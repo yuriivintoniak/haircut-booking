@@ -3,7 +3,7 @@ import { headerNavigation } from "./constants";
 
 export function HeaderNavigation() {
   return (
-    <nav className="hidden lg:flex gap-8">
+    <nav className="flex gap-6">
       {headerNavigation.map((navItem) => (
         <Link
           key={navItem.href}
