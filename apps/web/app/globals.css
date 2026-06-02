@@ -23,6 +23,7 @@
   --color-muted-foreground: var(--muted-foreground);
   --color-accent: var(--accent);
   --color-accent-foreground: var(--accent-foreground);
+  --color-rose: var(--rose);
   --color-destructive: var(--destructive);
   --color-destructive-foreground: var(--destructive-foreground);
   --color-border: var(--border);
@@ -66,7 +67,7 @@
   --muted-foreground: oklch(0.556 0 0);
   --accent: oklch(76.652% 0.13861 91.065);
   --accent-foreground: oklch(0.205 0 0);
-  --color-rose: oklch(66.551% 0.07969 18.332);
+  --rose: oklch(66.551% 0.07969 18.332);
   --destructive: oklch(0.577 0.245 27.325);
   --border: oklch(0.922 0 0);
   --input: oklch(0.922 0 0);
@@ -154,5 +155,12 @@
 
   .imgDark {
     display: unset;
+  }
+}
+
+@layer components {
+  .btn {
+    @apply font-medium rounded-sm py-2 px-5;
+    @apply hover:scale-[1.05] transition-all duration-300;
   }
 }

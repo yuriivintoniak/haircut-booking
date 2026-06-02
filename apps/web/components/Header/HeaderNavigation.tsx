@@ -8,7 +8,7 @@ export function HeaderNavigation() {
         <Link
           key={navItem.href}
           href={navItem.href}
-          className="text-primary-foreground/70 text-sm hover:text-primary-foreground transition-colors duration-300"
+          className="text-primary-foreground hover:text-rose transition-colors duration-300"
         >
           {navItem.label}
         </Link>
