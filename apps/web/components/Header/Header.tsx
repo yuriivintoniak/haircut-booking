@@ -1,6 +1,6 @@
 import Link from "next/link";
-import { MenuIcon } from "./MenuIcon";
 import { HeaderNavigation } from "./HeaderNavigation";
+import { MobileMenu } from "../MobileMenu/MobileMenu";
 
 export function Header() {
   return (
@@ -8,9 +8,6 @@ export function Header() {
       <div className="font-bebas text-primary-foreground text-2xl uppercase tracking-wider">
         <Link href="#">TrimSync</Link>
       </div>
-      <button className="lg:hidden flex cursor-pointer">
-        <MenuIcon />
-      </button>
       <div className="hidden lg:flex items-center gap-6">
         <HeaderNavigation />
         <Link
@@ -26,6 +23,7 @@ export function Header() {
           Book
         </Link>
       </div>
+      <MobileMenu />
     </header>
   );
 }

@@ -127,12 +127,12 @@
 }
 
 @layer base {
-  html,
-  body {
-    @apply max-w-[100vw] overflow-x-hidden;
+  html {
+    @apply scroll-smooth scrollbar-gutter-stable;
   }
 
   body {
+    @apply w-full overflow-x-hidden;
     @apply bg-background text-foreground;
   }
 
