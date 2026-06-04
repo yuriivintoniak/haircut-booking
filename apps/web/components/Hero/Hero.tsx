@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { services } from "./constants";
 import heroImage from "../../public/hero-barber.jpg";
@@ -34,12 +35,12 @@ export function Hero() {
             </div>
           ))}
         </div>
-        <button className="btn-primary group w-full max-w-md">
+        <Link href="/booking" className="btn-primary group w-full max-w-md">
           <span className="flex items-center justify-center gap-2">
             Book Now
             <ArrowRight className="group-hover:translate-x-1 duration-300" />
           </span>
-        </button>
+        </Link>
       </div>
     </section>
   );

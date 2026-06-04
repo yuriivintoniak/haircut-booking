@@ -10,43 +10,44 @@ import {
   SheetTrigger,
 } from "@repo/ui/components/sheet";
 import { MenuIcon } from "./MenuIcon";
-import { headerNavigation } from "../Header/constants";
+import { headerActions, headerNavigation } from "../Header/constants";
 
 export function MobileMenu() {
+  const linkClass = "text-xl block my-10";
+
   return (
-    <div>
+    <div className="lg:hidden flex">
       <Sheet>
         <SheetTrigger asChild>
-          <button className="flex lg:hidden cursor-pointer">
+          <button className="cursor-pointer">
             <MenuIcon />
           </button>
         </SheetTrigger>
         <SheetContent showCloseButton={false} className="bg-primary p-4 gap-0">
           <SheetHeader>
-            <SheetTitle>TrimSync</SheetTitle>
+            <SheetTitle>
+              <a href="#hero">TrimSync</a>
+            </SheetTitle>
             <SheetDescription />
           </SheetHeader>
           {headerNavigation.map((navItem) => (
             <Link
               key={navItem.href}
               href={navItem.href}
-              className="text-primary-foreground text-xl block my-10"
+              className={`text-primary-foreground ${linkClass}`}
             >
               {navItem.label}
             </Link>
           ))}
-          <Link
-            href="/auth/login"
-            className="text-rose text-xl block my-10"
-          >
-            Log in
-          </Link>
-          <a
-            href="#booking"
-            className="text-accent text-xl block my-10"
-          >
-            Book
-          </a>
+          {headerActions.map((action) => (
+            <Link
+              key={action.href}
+              href={action.href}
+              className={`text-${action.variant} ${linkClass}`}
+            >
+              {action.label}
+            </Link>
+          ))}
         </SheetContent>
       </Sheet>
     </div>
