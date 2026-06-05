@@ -1,9 +1,15 @@
 import type { Metadata } from "next";
-import { Geist } from "next/font/google";
+import { Bebas_Neue, Inter } from "next/font/google";
 import "./globals.css";
 import Providers from "./providers";
 
-const geistSans = Geist({
+const bebasNeue = Bebas_Neue({
+  subsets: ["latin"],
+  weight: ["400"],
+  variable: "--font-bebas-neue",
+});
+
+const inter = Inter({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
 });
@@ -20,7 +26,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${geistSans.className}`}>
+      <body className={`${bebasNeue.variable} ${inter.className}`}>
         <Providers>
           {children}
         </Providers>

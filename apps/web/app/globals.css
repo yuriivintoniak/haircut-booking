@@ -7,7 +7,13 @@
 
 @custom-variant dark (&:is(.dark *));
 
+@theme {
+  --breakpoint-2xs: 25rem; /* 400px */
+  --breakpoint-xs: 34.375rem; /* 550px */
+}
+
 @theme inline {
+  --font-bebas: var(--font-bebas-neue);
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -22,6 +28,7 @@
   --color-muted-foreground: var(--muted-foreground);
   --color-accent: var(--accent);
   --color-accent-foreground: var(--accent-foreground);
+  --color-rose: var(--rose);
   --color-destructive: var(--destructive);
   --color-destructive-foreground: var(--destructive-foreground);
   --color-border: var(--border);
@@ -63,8 +70,9 @@
   --secondary-foreground: oklch(0.205 0 0);
   --muted: oklch(0.97 0 0);
   --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
+  --accent: oklch(76.652% 0.13861 91.065);
   --accent-foreground: oklch(0.205 0 0);
+  --rose: oklch(66.551% 0.07969 18.332);
   --destructive: oklch(0.577 0.245 27.325);
   --border: oklch(0.922 0 0);
   --input: oklch(0.922 0 0);
@@ -119,12 +127,12 @@
 }
 
 @layer base {
-  html,
-  body {
-    @apply max-w-[100vw] overflow-x-hidden;
+  html {
+    @apply scroll-smooth scrollbar-gutter-stable;
   }
 
   body {
+    @apply w-full overflow-x-hidden;
     @apply bg-background text-foreground;
   }
 
@@ -152,5 +160,25 @@
 
   .imgDark {
     display: unset;
+  }
+}
+
+@layer components {
+  .header {
+    @apply fixed top-0 left-0 z-30 w-full;
+    @apply flex items-center justify-between;
+    @apply py-4 px-10 md:px-40;
+    @apply bg-primary/80 backdrop-blur-md;
+  }
+
+  .btn {
+    @apply font-medium rounded-sm py-2 px-5;
+    @apply transition-all duration-300 hover:scale-[1.05];
+  }
+
+  .btn-primary {
+    @apply bg-accent rounded-sm py-4 cursor-pointer;
+    @apply font-semibold uppercase 2xs:tracking-widest;
+    @apply transition-all duration-300 hover:bg-chart-5;
   }
 }
