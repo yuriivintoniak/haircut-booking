@@ -12,9 +12,14 @@ import {
 import { MenuIcon } from "./MenuIcon";
 import { headerActions, headerNavigation } from "../Header/constants";
 
-export function MobileMenu() {
-  const linkClass = "text-xl block my-10";
+const textColors = {
+  rose: "text-rose",
+  accent: "text-accent",
+};
 
+const linkClass = "text-xl block my-10";
+
+export function MobileMenu() {
   return (
     <div className="lg:hidden flex">
       <Sheet>
@@ -43,7 +48,7 @@ export function MobileMenu() {
             <Link
               key={action.href}
               href={action.href}
-              className={`text-${action.variant} ${linkClass}`}
+              className={`${textColors[action.variant]} ${linkClass}`}
             >
               {action.label}
             </Link>

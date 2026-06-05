@@ -3,6 +3,11 @@ import { headerActions } from "./constants";
 import { HeaderNavigation } from "./HeaderNavigation";
 import { MobileMenu } from "../MobileMenu/MobileMenu";
 
+const bgColors = {
+  rose: "bg-rose",
+  accent: "bg-accent",
+};
+
 export function Header() {
   return (
     <header className="header">
@@ -15,7 +20,7 @@ export function Header() {
           <Link
             key={action.href}
             href={action.href}
-            className={`bg-${action.variant} btn`}
+            className={`${bgColors[action.variant]} btn`}
           >
             {action.label}
           </Link>
