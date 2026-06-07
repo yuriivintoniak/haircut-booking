@@ -10,7 +10,7 @@ import { ArrowRight, Clock } from "lucide-react";
 
 export function Service({ service }: { service: Service }) {
   return (
-    <Card className="group gap-8 hover:border-accent hover:shadow-md">
+    <Card className="group gap-8 hover:border-accent hover:shadow-lg">
       <CardHeader className="flex justify-between items-start">
         <div className="flex-1">
           <h3 className="text-3xl font-bebas mb-1 uppercase tracking-wide leading-none">
@@ -25,7 +25,7 @@ export function Service({ service }: { service: Service }) {
           {service.price}
         </div>
       </CardHeader>
-      <CardContent className="text-muted-foreground text-sm leading-relaxed">
+      <CardContent className="text-muted-foreground leading-relaxed">
         {service.description}
       </CardContent>
       <CardFooter className="mt-auto">
