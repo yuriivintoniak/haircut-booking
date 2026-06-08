@@ -7,7 +7,7 @@ export function HeaderNavigation() {
         <a
           key={navItem.href}
           href={navItem.href}
-          className="text-primary-foreground hover:text-rose transition-colors duration-300"
+          className="text-primary-foreground hover:text-chart-5 transition-colors duration-300"
         >
           {navItem.label}
         </a>
