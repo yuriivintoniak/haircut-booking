@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { galleryItems } from "./constants";
 
 export function Gallery() {
@@ -12,13 +13,19 @@ export function Gallery() {
             A glimpse into the TrimSync experience.
           </p>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 auto-rows-[200px] md:auto-rows-[280px] gap-3 md:gap-4">
+        <div className="grid grid-cols-1 xs:grid-cols-2 lg:grid-cols-12 auto-rows-[240] 2xs:auto-rows-[360px] xs:auto-rows-[240px] md:auto-rows-[280px] gap-3 md:gap-4">
           {galleryItems.map((item) => (
             <figure
               key={item.title}
               aria-label={item.alt}
-              className={`group relative overflow-hidden rounded-sm ${item.color} ${item.span}`}
+              className={`group relative overflow-hidden rounded-sm ${item.span}`}
             >
+              <Image
+                src={item.src}
+                alt={item.alt}
+                fill={true}
+                className="object-cover"
+              />
               <figcaption className="absolute inset-x-0 bottom-0 p-4 md:p-5 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out backdrop-blur-md bg-foreground/30 border-t border-background/10">
                 <span className="text-background text-lg md:text-xl font-semibold leading-tight">
                   {item.title}
