@@ -13,7 +13,7 @@ export function Service({ service }: { service: Service }) {
     <Card className="group gap-8 hover:border-accent hover:shadow-lg">
       <CardHeader className="flex justify-between items-start">
         <div className="flex-1">
-          <h3 className="font-bebas text-2xl 2xs:text-3xl mb-1 uppercase tracking-wide">
+          <h3 className="font-display text-2xl 2xs:text-3xl mb-1 uppercase tracking-wide">
             {service.title}
           </h3>
           <div className="flex items-center gap-1.5 text-muted-foreground text-sm">
@@ -21,7 +21,7 @@ export function Service({ service }: { service: Service }) {
             <span>{service.duration}</span>
           </div>
         </div>
-        <div className="font-bebas text-accent text-2xl 2xs:text-3xl">
+        <div className="font-display text-accent text-2xl 2xs:text-3xl">
           {service.price}
         </div>
       </CardHeader>

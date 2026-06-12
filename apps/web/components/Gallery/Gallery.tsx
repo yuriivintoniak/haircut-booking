@@ -6,7 +6,7 @@ export function Gallery() {
     <section id="gallery" className="py-20 px-4 md:px-8 bg-[#f5f5f5]">
       <div className="max-w-[1400px] mx-auto">
         <div className="mb-16 flex flex-col items-start gap-4">
-          <h2 className="font-bebas text-secondary-foreground text-5xl sm:text-7xl uppercase tracking-tight">
+          <h2 className="font-display text-secondary-foreground text-5xl sm:text-7xl uppercase tracking-tight">
             Gallery
           </h2>
           <p className="text-muted-foreground">

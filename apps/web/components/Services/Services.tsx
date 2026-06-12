@@ -12,7 +12,7 @@ export function Services() {
               What we offer
             </span>
           </div>
-          <h2 className="font-bebas text-secondary-foreground text-5xl sm:text-7xl uppercase tracking-tight">
+          <h2 className="font-display text-secondary-foreground text-5xl sm:text-7xl uppercase tracking-tight">
             Our Services
           </h2>
           <p className="text-muted-foreground">
