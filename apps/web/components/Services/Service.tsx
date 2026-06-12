@@ -13,7 +13,7 @@ export function Service({ service }: { service: Service }) {
     <Card className="group gap-8 hover:border-accent hover:shadow-lg">
       <CardHeader className="flex justify-between items-start">
         <div className="flex-1">
-          <h3 className="font-bebas text-2xl 2xs:text-3xl mb-1 uppercase tracking-wide">
+          <h3 className="font-display text-2xl 2xs:text-3xl mb-1 uppercase tracking-wide">
             {service.title}
           </h3>
           <div className="flex items-center gap-1.5 text-muted-foreground text-sm">
@@ -21,7 +21,7 @@ export function Service({ service }: { service: Service }) {
             <span>{service.duration}</span>
           </div>
         </div>
-        <div className="font-bebas text-accent text-2xl 2xs:text-3xl">
+        <div className="font-display text-accent text-2xl 2xs:text-3xl">
           {service.price}
         </div>
       </CardHeader>
@@ -29,7 +29,7 @@ export function Service({ service }: { service: Service }) {
         {service.description}
       </CardContent>
       <CardFooter className="mt-auto">
-        <Button className="text-rose uppercase transition-colors hover:text-chart-5">
+        <Button className="text-primary-accent uppercase transition-colors hover:text-chart-5">
           Book Now
           <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
         </Button>

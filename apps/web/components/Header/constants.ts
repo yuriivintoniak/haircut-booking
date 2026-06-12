@@ -6,7 +6,7 @@ type NavItem = {
 type HeaderAction = {
   label: string;
   href: string;
-  variant: "rose" | "accent";
+  variant: "primary-accent" | "accent";
 };
 
 export const headerNavigation: NavItem[] = [
@@ -32,7 +32,7 @@ export const headerActions: HeaderAction[] = [
   {
     label: "Log in",
     href: "/auth/login",
-    variant: "rose"
+    variant: "primary-accent"
   },
   {
     label: "Book",

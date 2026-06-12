@@ -18,7 +18,7 @@ export function Hero() {
           />
         </div>
         <div className="relative z-10 pt-20">
-          <h1 className="font-bebas text-primary-foreground text-7xl 2xs:text-8xl md:text-[10rem] lg:text-[12rem] leading-[0.85] tracking-tight uppercase text-right">
+          <h1 className="font-display text-primary-foreground text-7xl 2xs:text-8xl md:text-[10rem] lg:text-[12rem] leading-[0.85] tracking-tight uppercase text-right">
             The Art<br />of the<br />Cut
           </h1>
         </div>
@@ -27,7 +27,7 @@ export function Hero() {
             {services.map((service) => (
               <div
                 key={service.name}
-                className="flex justify-between items-center py-3 font-bebas text-lg 2xs:text-xl md:text-2xl text-primary-foreground"
+                className="flex justify-between items-center py-3 font-display text-lg 2xs:text-xl md:text-2xl text-primary-foreground"
               >
                 <span className="uppercase tracking-wide">
                   {service.name}

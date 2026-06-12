@@ -13,8 +13,8 @@ import { MenuIcon } from "./MenuIcon";
 import { headerActions, headerNavigation } from "../Header/constants";
 
 const textColors = {
-  rose: "text-rose",
-  accent: "text-accent",
+  "primary-accent": "text-primary-accent",
+  "accent": "text-accent",
 };
 
 const linkClass = "text-xl block my-10";
