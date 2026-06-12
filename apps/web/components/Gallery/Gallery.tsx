@@ -3,13 +3,16 @@ import { galleryItems } from "./constants";
 
 export function Gallery() {
   return (
-    <section id="gallery" className="py-20 px-4 md:px-8 bg-[#f5f5f5]">
+    <section id="gallery" className="py-20 px-4 md:px-8 bg-secondary">
       <div className="max-w-[1400px] mx-auto">
-        <div className="mb-16 flex flex-col items-start gap-4">
-          <h2 className="font-display text-secondary-foreground text-5xl sm:text-7xl uppercase tracking-tight">
-            Gallery
-          </h2>
-          <p className="text-muted-foreground">
+        <div className="mb-12 flex flex-col items-start gap-3">
+          <div className="flex items-center gap-1 sm:gap-3">
+            <span className="h-[3px] w-8 sm:w-12 bg-secondary-foreground" />
+            <h2 className="font-display text-secondary-foreground text-5xl sm:text-7xl uppercase tracking-tight">
+              Gallery
+            </h2>
+          </div>
+          <p className="text-muted-foreground sm:text-lg">
             A glimpse into the TrimSync experience.
           </p>
         </div>
@@ -18,7 +21,7 @@ export function Gallery() {
             <figure
               key={item.title}
               aria-label={item.alt}
-              className={`group relative overflow-hidden rounded-sm ${item.span}`}
+              className={`group relative overflow-hidden rounded-sm shadow-lg ${item.span}`}
             >
               <Image
                 src={item.src}
@@ -26,8 +29,8 @@ export function Gallery() {
                 fill={true}
                 className="object-cover"
               />
-              <figcaption className="absolute inset-x-0 bottom-0 p-4 md:p-5 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out backdrop-blur-md bg-foreground/30 border-t border-background/10">
-                <span className="text-background text-lg md:text-xl font-semibold leading-tight">
+              <figcaption className="absolute inset-x-0 bottom-0 p-3 md:p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out backdrop-blur-sm bg-foreground/30 border-t border-background/10">
+                <span className="text-background sm:text-lg font-medium leading-tight">
                   {item.title}
                 </span>
               </figcaption>
