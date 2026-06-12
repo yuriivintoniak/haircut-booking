@@ -4,8 +4,8 @@ import { HeaderNavigation } from "./HeaderNavigation";
 import { MobileMenu } from "../MobileMenu/MobileMenu";
 
 const bgColors = {
-  rose: "bg-rose",
-  accent: "bg-accent",
+  "primary-accent": "bg-primary-accent",
+  "accent": "bg-accent",
 };
 
 export function Header() {

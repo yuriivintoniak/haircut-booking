@@ -2,7 +2,7 @@ export const MenuIcon = () => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      className="h-8 w-8 text-rose hover:text-chart-5 transition-colors duration-300 ease-in-out"
+      className="h-8 w-8 text-primary-accent hover:text-chart-5 transition-colors duration-300 ease-in-out"
       fill="none"
       viewBox="0 0 24 24"
       stroke="currentColor"

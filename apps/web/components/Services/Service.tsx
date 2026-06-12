@@ -29,7 +29,7 @@ export function Service({ service }: { service: Service }) {
         {service.description}
       </CardContent>
       <CardFooter className="mt-auto">
-        <Button className="text-rose uppercase transition-colors hover:text-chart-5">
+        <Button className="text-primary-accent uppercase transition-colors hover:text-chart-5">
           Book Now
           <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
         </Button>
