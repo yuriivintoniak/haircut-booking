@@ -1,4 +1,32 @@
+"use client";
+
+import { useEffect, useState } from "react";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselNext,
+  CarouselPrevious,
+  type CarouselApi,
+} from "@repo/ui/components/carousel";
+import { Testimonial } from "./Testimonial";
+import { testimonials } from "./constants";
+
 export function Testimonials() {
+  const [api, setApi] =useState<CarouselApi>();
+  const [current, setCurrent] = useState(0);
+
+  useEffect(() => {
+    if (!api) {
+      return;
+    }
+
+    setCurrent(api.selectedScrollSnap() + 1);
+
+    api.on("select", () => {
+      setCurrent(api.selectedScrollSnap() + 1);
+    });
+  }, [api]);
+
   return (
     <section id="testimonials" className="py-20 px-4 md:px-8 bg-primary">
       <div className="max-w-[1400px] mx-auto">
@@ -13,9 +41,27 @@ export function Testimonials() {
             Real feedback from clients who trust our work and expertise.
           </p>
         </div>
-        <div className="text-primary-foreground/60">
-          Testimonials
-        </div>
+        <Carousel
+          setApi={setApi}
+          opts={{ align: "center", loop: true }}
+        >
+          <CarouselContent>
+            {testimonials.map((testimonial, index) => (
+              <Testimonial
+                key={testimonial.name}
+                testimonial={testimonial}
+                index={index}
+                current={current}
+              />
+            ))}
+          </CarouselContent>
+          <div className="flex justify-center mt-12">
+            <div className="flex items-center gap-2 bg-[#2a2d4a] rounded-full p-1.5">
+              <CarouselPrevious />
+              <CarouselNext />
+            </div>
+          </div>
+        </Carousel>
       </div>
     </section>
   );

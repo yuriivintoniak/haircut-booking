@@ -175,7 +175,7 @@ function CarouselPrevious({
   size = "icon",
   ...props
 }: React.ComponentProps<typeof Button>) {
-  const { orientation, scrollPrev, canScrollPrev } = useCarousel()
+  const { scrollPrev, canScrollPrev } = useCarousel()
 
   return (
     <Button
@@ -183,17 +183,23 @@ function CarouselPrevious({
       variant={variant}
       size={size}
       className={cn(
-        "absolute size-8 rounded-full",
-        orientation === "horizontal"
-          ? "top-1/2 -left-12 -translate-y-1/2"
-          : "-top-12 left-1/2 -translate-x-1/2 rotate-90",
+        "group relative size-8 rounded-full bg-transparent border-none overflow-hidden",
         className
       )}
       disabled={!canScrollPrev}
       onClick={scrollPrev}
       {...props}
     >
-      <ArrowLeft />
+      <span
+        className="
+          absolute inset-0
+          bg-gradient-to-l from-[#a855f7] to-[#f59e0b]
+          opacity-0
+          transition-opacity duration-300
+          group-hover:opacity-100
+        "
+      />
+      <ArrowLeft className="relative z-10 text-[#D482AB] group-hover:text-white transition-colors duration-300" />
       <span className="sr-only">Previous slide</span>
     </Button>
   )
@@ -205,7 +211,7 @@ function CarouselNext({
   size = "icon",
   ...props
 }: React.ComponentProps<typeof Button>) {
-  const { orientation, scrollNext, canScrollNext } = useCarousel()
+  const { scrollNext, canScrollNext } = useCarousel()
 
   return (
     <Button
@@ -213,17 +219,23 @@ function CarouselNext({
       variant={variant}
       size={size}
       className={cn(
-        "absolute size-8 rounded-full",
-        orientation === "horizontal"
-          ? "top-1/2 -right-12 -translate-y-1/2"
-          : "-bottom-12 left-1/2 -translate-x-1/2 rotate-90",
+        "group relative size-8 rounded-full bg-transparent border-none overflow-hidden",
         className
       )}
       disabled={!canScrollNext}
       onClick={scrollNext}
       {...props}
     >
-      <ArrowRight />
+      <span
+        className="
+          absolute inset-0
+          bg-gradient-to-r from-[#a855f7] to-[#f59e0b]
+          opacity-0
+          transition-opacity duration-300
+          group-hover:opacity-100
+        "
+      />
+      <ArrowRight className="relative z-10 text-[#D482AB] group-hover:text-white transition-colors duration-300" />
       <span className="sr-only">Next slide</span>
     </Button>
   )
