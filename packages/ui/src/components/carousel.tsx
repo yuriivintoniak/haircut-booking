@@ -183,23 +183,14 @@ function CarouselPrevious({
       variant={variant}
       size={size}
       className={cn(
-        "group relative size-8 rounded-full bg-transparent border-none overflow-hidden",
+        "group relative size-8 rounded-full bg-transparent border-none overflow-hidden hover:bg-chart-5 transition-colors duration-300",
         className
       )}
       disabled={!canScrollPrev}
       onClick={scrollPrev}
       {...props}
     >
-      <span
-        className="
-          absolute inset-0
-          bg-gradient-to-l from-[#a855f7] to-[#f59e0b]
-          opacity-0
-          transition-opacity duration-300
-          group-hover:opacity-100
-        "
-      />
-      <ArrowLeft className="relative z-10 text-[#D482AB] group-hover:text-white transition-colors duration-300" />
+      <ArrowLeft strokeWidth={2.5} className="size-6 text-primary-accent group-hover:text-primary-foreground/60 duration-300" />
       <span className="sr-only">Previous slide</span>
     </Button>
   )
@@ -219,23 +210,14 @@ function CarouselNext({
       variant={variant}
       size={size}
       className={cn(
-        "group relative size-8 rounded-full bg-transparent border-none overflow-hidden",
+        "group relative size-8 rounded-full bg-transparent border-none overflow-hidden hover:bg-chart-5 transition-colors duration-300",
         className
       )}
       disabled={!canScrollNext}
       onClick={scrollNext}
       {...props}
     >
-      <span
-        className="
-          absolute inset-0
-          bg-gradient-to-r from-[#a855f7] to-[#f59e0b]
-          opacity-0
-          transition-opacity duration-300
-          group-hover:opacity-100
-        "
-      />
-      <ArrowRight className="relative z-10 text-[#D482AB] group-hover:text-white transition-colors duration-300" />
+      <ArrowRight strokeWidth={2.5} className="size-6 text-primary-accent group-hover:text-primary-foreground/60 duration-300" />
       <span className="sr-only">Next slide</span>
     </Button>
   )

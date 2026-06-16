@@ -1,4 +1,4 @@
-export const StarFilled = () => {
+export const StarFilledIcon = () => {
   return (
     <svg
       viewBox="0 0 1920 1920"

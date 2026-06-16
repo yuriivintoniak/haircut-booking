@@ -16,9 +16,7 @@ export function Testimonials() {
   const [current, setCurrent] = useState(0);
 
   useEffect(() => {
-    if (!api) {
-      return;
-    }
+    if (!api) return;
 
     setCurrent(api.selectedScrollSnap() + 1);
 
@@ -32,9 +30,9 @@ export function Testimonials() {
       <div className="max-w-[1400px] mx-auto">
         <div className="mb-12 flex flex-col items-start gap-3">
           <div className="flex items-center gap-1 sm:gap-3">
-            <span className="h-[3px] w-8 sm:w-12 bg-primary-foreground" />
-            <h2 className="font-display text-primary-foreground text-5xl sm:text-7xl uppercase tracking-tight">
-              Words From Clients
+            <span className="h-[3px] w-8 sm:w-12 bg-chart-5" />
+            <h2 className="font-display text-chart-5 text-5xl sm:text-7xl uppercase tracking-tight">
+              What Clients Say
             </h2>
           </div>
           <p className="text-primary-foreground/60 sm:text-lg">
@@ -56,7 +54,7 @@ export function Testimonials() {
             ))}
           </CarouselContent>
           <div className="flex justify-center mt-12">
-            <div className="flex items-center gap-2 bg-[#2a2d4a] rounded-full p-1.5">
+            <div className="flex items-center gap-2 bg-[#2a2a2c] rounded-full p-2">
               <CarouselPrevious />
               <CarouselNext />
             </div>
