@@ -56,9 +56,9 @@ export default function SignUpPage() {
     <main className="relative min-h-svh w-full flex items-center justify-center py-20 px-4 md:px-8 bg-secondary">
       <Link 
         href="/"
-        className="absolute top-4 left-4 md:top-8 md:left-8 flex items-center gap-1 text-sm sm:text-base text-muted-foreground transition-all duration-300 hover:-translate-x-[5px] hover:text-primary-accent"
+        className="absolute top-4 left-4 md:top-8 md:left-8 flex items-center gap-1 text-muted-foreground transition-all duration-300 hover:-translate-x-[5px] hover:text-primary-accent"
       >
-        <ArrowLeft className="size-4 sm:size-5" />
+        <ArrowLeft className="size-4" />
         Go back
       </Link>
 
