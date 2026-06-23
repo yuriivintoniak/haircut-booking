@@ -163,6 +163,15 @@
   }
 }
 
+/* override chrome autofill styles */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  transition: background-color 5000s ease-in-out 0s;
+  -webkit-text-fill-color: var(--text-primary) !important;
+}
+
 @layer components {
   .header {
     @apply fixed top-0 left-0 z-30 w-full;
@@ -179,5 +188,11 @@
     @apply bg-accent rounded-sm py-4 cursor-pointer;
     @apply font-semibold uppercase 2xs:tracking-widest;
     @apply transition-all duration-300 hover:bg-chart-5;
+  }
+
+  .input-group {
+    @apply p-4 border border-primary/25 rounded-md bg-card;
+    @apply focus-within:border-chart-5;
+    @apply flex flex-row items-center gap-2;
   }
 }
