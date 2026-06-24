@@ -13,10 +13,11 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useMutation } from "@tanstack/react-query";
 
+import { AuthTabs } from "../AuthTabs";
+import { signIn } from "../../../lib/auth-client";
+import { Input } from "@repo/ui/components/input";
 import { Button } from "@repo/ui/components/button";
 import { Card, CardContent } from "@repo/ui/components/card";
-import { Input } from "@repo/ui/components/input";
-import { signIn } from "../../../lib/auth-client";
 
 type SignInFormData = {
   email: string;
@@ -70,10 +71,12 @@ export default function SignInPage() {
           </p>
         </div>
 
+        <AuthTabs />
+
         <Card className="bg-transparent border-none p-0 pt-6">
           <CardContent>
             <form onSubmit={handleSubmit(onSubmit)}>
-              <div className="w-full flex flex-col gap-5 sm:gap-7">
+              <div className="w-full flex flex-col gap-4 sm:gap-6">
                 <div>
                   <div className={`input-group ${
                     formErrors.email ? "border-[#F36D97]" : ""
