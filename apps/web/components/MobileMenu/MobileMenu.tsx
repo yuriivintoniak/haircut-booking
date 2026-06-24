@@ -10,16 +10,14 @@ import {
   SheetTrigger,
 } from "@repo/ui/components/sheet";
 import { MenuIcon } from "./MenuIcon";
-import { headerActions, headerNavigation } from "../Header/constants";
+import { headerNavigation } from "../Header/constants";
+import { signOut, useSession } from "../../lib/auth-client";
 
-const textColors = {
-  "primary-accent": "text-primary-accent",
-  "accent": "text-accent",
-};
-
-const linkClass = "text-xl block my-10";
+const linkClass = "text-lg block my-8";
 
 export function MobileMenu() {
+  const { data: session } = useSession();
+
   return (
     <div className="lg:hidden flex">
       <Sheet>
@@ -39,20 +37,26 @@ export function MobileMenu() {
             <Link
               key={navItem.href}
               href={navItem.href}
-              className={`text-primary-foreground ${linkClass}`}
+              className={`${linkClass} text-primary-foreground`}
             >
               {navItem.label}
             </Link>
           ))}
-          {headerActions.map((action) => (
-            <Link
-              key={action.href}
-              href={action.href}
-              className={`${textColors[action.variant]} ${linkClass}`}
+          <a href="#booking" className={`${linkClass} text-accent`}>
+            Book
+          </a>
+          {session ? (
+            <button 
+              onClick={() => signOut()} 
+              className={`${linkClass} text-primary-accent text-left cursor-pointer`}
             >
-              {action.label}
+              Sign out
+            </button>
+          ) : (
+            <Link href="/sign-in" className={`${linkClass} text-primary-accent`}>
+              Sign in
             </Link>
-          ))}
+          )}
         </SheetContent>
       </Sheet>
     </div>

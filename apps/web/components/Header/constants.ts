@@ -3,12 +3,6 @@ type NavItem = {
   href: string;
 };
 
-type HeaderAction = {
-  label: string;
-  href: string;
-  variant: "accent" | "primary-accent";
-};
-
 export const headerNavigation: NavItem[] = [
   {
     label: "Services",
@@ -25,18 +19,5 @@ export const headerNavigation: NavItem[] = [
   {
     label: "Contact",
     href: "#contact"
-  }
-];
-
-export const headerActions: HeaderAction[] = [
-  {
-    label: "Book",
-    href: "/booking",
-    variant: "accent"
-  },
-  {
-    label: "Sign in",
-    href: "/sign-in",
-    variant: "primary-accent"
   }
 ];

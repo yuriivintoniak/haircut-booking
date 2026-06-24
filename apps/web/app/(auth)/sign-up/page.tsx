@@ -45,7 +45,7 @@ export default function SignUpPage() {
       return response.data;
     },
     onSuccess: () => {
-      router.push("/dashboard");
+      router.push("/");
     },
   });
 
