@@ -1,21 +1,21 @@
-import { faker } from '@faker-js/faker';
-import { test, expect } from '@playwright/test';
+import { faker } from "@faker-js/faker";
+import { test, expect } from "@playwright/test";
 
 const routes = {
-  signUp: '/sign-up',
-  signIn: '/sign-in',
-  dashboard: /dashboard/,
+  signUp: "/sign-up",
+  signIn: "/sign-in",
+  home: "/",
 };
 
 const locators = {
-  name: 'Name',
-  email: 'Email',
-  password: 'Password',
-  signUpButton: 'Sign up',
-  signInButton: 'Sign in',
+  name: "Name",
+  email: "Email",
+  password: "Password",
+  signUpButton: "Sign up",
+  signInButton: "Sign in",
 };
 
-test('Sign up flow', async ({ page }) => {
+test("Sign up flow", async ({ page }) => {
   const name = faker.person.fullName();
   const email = faker.internet.email();
   const password = faker.internet.password({ length: 8 });
@@ -26,12 +26,12 @@ test('Sign up flow', async ({ page }) => {
   await page.getByPlaceholder(locators.email).fill(email);
   await page.getByPlaceholder(locators.password).fill(password);
 
-  await page.getByRole('button', { name: locators.signUpButton }).click();
+  await page.getByRole("button", { name: locators.signUpButton }).click();
 
-  await expect(page).toHaveURL(routes.dashboard, { timeout: 15000 });
+  await expect(page).toHaveURL(routes.home, { timeout: 15000 });
 });
 
-test('Sign in flow', async ({ page }) => {
+test("Sign in flow", async ({ page }) => {
   const name = faker.person.fullName();
   const email = faker.internet.email();
   const password = faker.internet.password({ length: 8 });
@@ -42,9 +42,9 @@ test('Sign in flow', async ({ page }) => {
   await page.getByPlaceholder(locators.email).fill(email);
   await page.getByPlaceholder(locators.password).fill(password);
 
-  await page.getByRole('button', { name: locators.signUpButton }).click();
+  await page.getByRole("button", { name: locators.signUpButton }).click();
 
-  await expect(page).toHaveURL(routes.dashboard, { timeout: 15000 });
+  await expect(page).toHaveURL(routes.home, { timeout: 15000 });
 
   await page.context().clearCookies();
   
@@ -53,7 +53,7 @@ test('Sign in flow', async ({ page }) => {
   await page.getByPlaceholder(locators.email).fill(email);
   await page.getByPlaceholder(locators.password).fill(password);
 
-  await page.getByRole('button', { name: locators.signInButton }).click();
+  await page.getByRole("button", { name: locators.signInButton }).click();
 
-  await expect(page).toHaveURL(routes.dashboard, { timeout: 15000 });
+  await expect(page).toHaveURL(routes.home, { timeout: 15000 });
 });
