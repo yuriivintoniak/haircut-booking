@@ -43,7 +43,7 @@ export default function SignInPage() {
       return response.data;
     },
     onSuccess: () => {
-      router.push("/");
+      router.push("/?auth=signin-success");
     },
   });
 

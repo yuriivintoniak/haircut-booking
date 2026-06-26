@@ -1,12 +1,29 @@
 "use client";
 
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+
 import { HeaderNavigation } from "./HeaderNavigation";
 import { MobileMenu } from "../MobileMenu/MobileMenu";
 import { signOut, useSession } from "../../lib/auth-client";
 
 export function Header() {
+  const router = useRouter();
   const { data: session } = useSession();
+
+  const handleSignOut = async () => {
+    try {
+      const response = await signOut();
+
+      if (response?.error) {
+        throw new Error(response.error.message);
+      }
+
+      router.push("/?auth=signout-success");
+    } catch (error) {
+      console.error("Error signing out:", error);
+    }
+  };
 
   return (
     <header className="header">
@@ -20,7 +37,7 @@ export function Header() {
             Book
           </a>
           {session ? (
-            <button onClick={() => signOut()} className="btn bg-primary-accent cursor-pointer">
+            <button onClick={handleSignOut} className="btn bg-primary-accent cursor-pointer">
               Sign out
             </button>
           ) : (

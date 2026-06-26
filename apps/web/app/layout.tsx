@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import { Bebas_Neue, Inter } from "next/font/google";
 import "./globals.css";
 import Providers from "./providers";
+import { Suspense } from "react";
+import { AuthToast } from "../lib/auth-toast";
+import { Toaster } from "@repo/ui/components/sonner";
 
 const bebasNeue = Bebas_Neue({
   subsets: ["latin"],
@@ -29,6 +32,10 @@ export default function RootLayout({
       <body className={`${bebasNeue.variable} ${inter.className}`}>
         <Providers>
           {children}
+          <Suspense fallback={null}>
+            <AuthToast />
+          </Suspense>
+          <Toaster position="top-center" richColors />
         </Providers>
       </body>
     </html>
