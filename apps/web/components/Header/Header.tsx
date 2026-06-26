@@ -1,14 +1,30 @@
+"use client";
+
 import Link from "next/link";
-import { headerActions } from "./constants";
+import { useRouter } from "next/navigation";
+
 import { HeaderNavigation } from "./HeaderNavigation";
 import { MobileMenu } from "../MobileMenu/MobileMenu";
-
-const bgColors = {
-  "primary-accent": "bg-primary-accent",
-  "accent": "bg-accent",
-};
+import { signOut, useSession } from "../../lib/auth-client";
 
 export function Header() {
+  const router = useRouter();
+  const { data: session } = useSession();
+
+  const handleSignOut = async () => {
+    try {
+      const response = await signOut();
+
+      if (response?.error) {
+        throw new Error(response.error.message);
+      }
+
+      router.push("/?auth=signout-success");
+    } catch (error) {
+      console.error("Error signing out:", error);
+    }
+  };
+
   return (
     <header className="header">
       <div className="max-w-[1400px] mx-auto flex items-center justify-between">
@@ -17,15 +33,18 @@ export function Header() {
         </div>
         <div className="hidden lg:flex items-center gap-6">
           <HeaderNavigation />
-          {headerActions.map((action) => (
-            <Link
-              key={action.href}
-              href={action.href}
-              className={`${bgColors[action.variant]} btn`}
-            >
-              {action.label}
+          <a href="#booking" className="btn bg-accent">
+            Book
+          </a>
+          {session ? (
+            <button onClick={handleSignOut} className="btn bg-primary-accent cursor-pointer">
+              Sign out
+            </button>
+          ) : (
+            <Link href="/sign-in" className="btn bg-primary-accent">
+              Sign in
             </Link>
-          ))}
+          )}
         </div>
         <MobileMenu />
       </div>

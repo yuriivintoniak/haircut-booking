@@ -1,26 +1,24 @@
 "use client";
 
-import { Button } from "@repo/ui/components/button";
 import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@repo/ui/components/card";
-import {
-  Field,
-  FieldDescription,
-  FieldGroup,
-} from "@repo/ui/components/field";
-import { Input } from "@repo/ui/components/input";
-
+  ArrowLeft,
+  Eye,
+  EyeClosed,
+  Lock,
+  Mail,
+} from "lucide-react";
 import Link from "next/link";
-import { useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
-import { signIn } from "../../../lib/auth-client";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
 import { useMutation } from "@tanstack/react-query";
-  
+
+import { AuthTabs } from "../AuthTabs";
+import { signIn } from "../../../lib/auth-client";
+import { Input } from "@repo/ui/components/input";
+import { Button } from "@repo/ui/components/button";
+import { Card, CardContent } from "@repo/ui/components/card";
+
 type SignInFormData = {
   email: string;
   password: string;
@@ -28,6 +26,7 @@ type SignInFormData = {
 
 export default function SignInPage() {
   const router = useRouter();
+  const [showPassword, setShowPassword] = useState(false);
 
   const {
     register,
@@ -44,7 +43,7 @@ export default function SignInPage() {
       return response.data;
     },
     onSuccess: () => {
-      router.push("/dashboard");
+      router.push("/?auth=signin-success");
     },
   });
 
@@ -53,66 +52,92 @@ export default function SignInPage() {
   }
 
   return (
-    <main className="min-h-svh w-full flex items-center justify-center">
-      <div className="w-full max-w-sm">
-        <Card>
-          <CardHeader>
-            <CardTitle>Sign in to your account</CardTitle>
-            <CardDescription>
-              Enter your email below to sign in to your account
-            </CardDescription>
-            {signInMutation.isError && (
-              <p className="text-[#F36D97] text-sm font-medium">
-                {signInMutation.error.message}
-              </p>
-            )}
-          </CardHeader>
+    <main className="relative min-h-svh w-full flex items-center justify-center py-20 px-4 md:px-8 bg-secondary">
+      <Link 
+        href="/"
+        className="absolute top-4 left-4 md:top-8 md:left-8 flex items-center gap-1 text-muted-foreground transition-all duration-300 hover:-translate-x-[5px] hover:text-primary-accent"
+      >
+        <ArrowLeft className="size-4" />
+        Go back
+      </Link>
+
+      <div className="w-full sm:max-w-xl">
+        <div className="flex flex-col items-center gap-4">
+          <h2 className="font-display text-secondary-foreground text-5xl sm:text-6xl uppercase tracking-tight">
+            Welcome Back
+          </h2>
+          <p className="text-center text-muted-foreground sm:text-lg max-w-sm">
+            Sign in to manage your bookings and pick up where you left off.
+          </p>
+        </div>
+
+        <AuthTabs />
+
+        <Card className="bg-transparent border-none p-0 pt-6">
           <CardContent>
             <form onSubmit={handleSubmit(onSubmit)}>
-              <FieldGroup>
-                <Field>
-                  <Input
-                    {...register("email", {
-                      required: "Email is required",
-                    })}
-                    type="email"
-                    placeholder="Email"
-                  />
+              <div className="w-full flex flex-col gap-4 sm:gap-6">
+                <div>
+                  <div className={`input-group ${
+                    formErrors.email ? "border-[#F36D97]" : ""
+                  }`}>
+                    <Mail size={16} className="text-primary/40" />
+                    <Input
+                      {...register("email", {
+                        required: "Email is required",
+                      })}
+                      type="email"
+                      placeholder="Email"
+                      className="flex-1 placeholder:text-primary/40"
+                    />
+                  </div>
                   {formErrors.email && (
-                    <p className="text-[#F36D97] text-sm font-medium">
+                    <p className="mt-2 text-[#F36D97] text-sm font-medium">
                       {formErrors.email.message}
                     </p>
                   )}
-                </Field>
-                <Field>
-                  <Input
-                    {...register("password", {
-                      required: "Password is required",
-                    })}
-                    type="password"
-                    placeholder="Password"
-                  />
+                </div>
+
+                <div>
+                  <div className={`input-group ${
+                    formErrors.password ? "border-[#F36D97]" : ""
+                  }`}>
+                    <Lock size={16} className="text-primary/40" />
+                    <Input
+                      {...register("password", {
+                        required: "Password is required",
+                        minLength: {
+                          value: 8,
+                          message: "Minimum 8 characters",
+                        },
+                      })}
+                      type={showPassword ? "text" : "password"}
+                      placeholder="Password"
+                      className="flex-1 placeholder:text-primary/40"
+                    />
+                    <button
+                      type="button"
+                      onClick={() => setShowPassword((prev) => !prev)}
+                      className="text-primary/40 hover:text-primary-accent transition-colors duration-300 cursor-pointer"
+                    >
+                      {showPassword ? <EyeClosed size={16} /> : <Eye size={16} />}
+                    </button>
+                  </div>
                   {formErrors.password && (
-                    <p className="text-[#F36D97] text-sm font-medium">
+                    <p className="mt-2 text-[#F36D97] text-sm font-medium">
                       {formErrors.password.message}
                     </p>
                   )}
-                </Field>
-                <Field>
-                  <Button
-                    type="submit"
-                    disabled={signInMutation.isPending}
-                  >
-                    {signInMutation.isPending ? "Signing in..." : "Sign in"}
-                  </Button>
-                  <FieldDescription className="text-center">
-                    Don&apos;t have an account?{" "}
-                    <Link href="/sign-up" className="underline">
-                      Sign up
-                    </Link>
-                  </FieldDescription>
-                </Field>
-              </FieldGroup>
+                </div>
+
+                <Button
+                  type="submit"
+                  disabled={signInMutation.isPending}
+                  className="text-base text-secondary bg-secondary-foreground p-4 cursor-pointer hover:bg-secondary-foreground/80 transition-colors duration-300"
+                >
+                  {signInMutation.isPending ? "Signing in..." : "Sign in"}
+                </Button>
+              </div>
             </form>
           </CardContent>
         </Card>
