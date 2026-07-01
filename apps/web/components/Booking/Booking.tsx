@@ -3,16 +3,14 @@
 import { useState } from "react";
 import { BookingForm } from "./BookingForm/BookingForm";
 import { BookingSummary } from "./BookingSummary/BookingSummary";
-import { services, stylists, steps, type Service, ORANGE, GRAY, ROSE } from "./constants";
+import { services, stylists, steps, type Service, ORANGE, GRAY, ROSE, Barber } from "./constants";
 
 export function Booking() {
   const [currentStep, setCurrentStep] = useState(1)
-  // const [selectedService, setSelectedService] = useState<Service>(services[0])
   const [selectedService, setSelectedService] = useState<Service | null>(null);
-  // const [selectedStylist, setSelectedStylist] = useState(stylists[0])
-  const [selectedStylist, setSelectedStylist] = useState<string | null>(null);
-  const [selectedDate, setSelectedDate] = useState("")
-  const [selectedTime, setSelectedTime] = useState("")
+  const [selectedBarber, setSelectedBarber] = useState<Barber | null>(null);
+  const [selectedDate, setSelectedDate] = useState<string | null>(null);
+  const [selectedTime, setSelectedTime] = useState<string | null>(null);
 
   const handleNext = () => setCurrentStep((s) => Math.min(s + 1, steps.length))
   const handleBack = () => setCurrentStep((s) => Math.max(s - 1, 1))
@@ -34,15 +32,15 @@ export function Booking() {
           </p>
         </div>
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-stretch">
-          <div className="lg:col-span-7">
+          <div className="lg:col-span-8">
             <BookingForm
               currentStep={currentStep}
               selectedService={selectedService}
-              selectedStylist={selectedStylist}
+              selectedBarber={selectedBarber}
               selectedDate={selectedDate}
               selectedTime={selectedTime}
               onServiceSelect={setSelectedService}
-              onStylistSelect={setSelectedStylist}
+              onBarberSelect={setSelectedBarber}
               onDateChange={setSelectedDate}
               onTimeChange={setSelectedTime}
               onBack={handleBack}
@@ -50,10 +48,10 @@ export function Booking() {
             />
           </div>
 
-          <div className="lg:col-span-5">
+          <div className="lg:col-span-4">
             <BookingSummary
               selectedService={selectedService}
-              selectedStylist={selectedStylist}
+              selectedBarber={selectedBarber}
               selectedDate={selectedDate}
               selectedTime={selectedTime}
               canConfirm={canConfirm}

@@ -1,55 +1,75 @@
-import { Calendar, Clock } from "lucide-react"
-import { timeSlots, GRAY, ROSE, PANEL_ALT, DARK, TEXT } from "../constants"
+import { cn } from "@repo/ui/lib/utils";
+import { timeSlots } from "../constants";
+import { Calendar } from "@repo/ui/components/calendar";
 
-type Props = {
-  selectedDate: string
-  selectedTime: string
-  onDateChange: (date: string) => void
-  onTimeChange: (time: string) => void
+type StepDateTimeProps = {
+  selectedDate: string | null;
+  selectedTime: string | null;
+  onDateChange: (date: string) => void;
+  onTimeChange: (time: string) => void;
+};
+
+function formatDate(date: Date) {
+  const y = date.getFullYear();
+  const m = String(date.getMonth() + 1).padStart(2, "0");
+  const d = String(date.getDate()).padStart(2, "0");
+
+  return `${y}-${m}-${d}`;
 }
 
-export function StepDateTime({ selectedDate, selectedTime, onDateChange, onTimeChange }: Props) {
+export function StepDateTime({
+  selectedDate,
+  selectedTime,
+  onDateChange,
+  onTimeChange,
+}: StepDateTimeProps) {
   return (
-    <>
-      <div className="mb-5">
-        <label className="flex items-center gap-2 text-sm font-medium mb-2" style={{ color: GRAY }}>
-          <Calendar className="w-4 h-4" style={{ color: ROSE }} />
-          Date
-        </label>
-        <input
-          type="date"
-          value={selectedDate}
-          onChange={(e) => onDateChange(e.target.value)}
-          className="w-full rounded-lg border px-4 py-3 text-sm outline-none transition-colors focus:border-[#C08081] [color-scheme:dark]"
-          style={{ backgroundColor: PANEL_ALT, borderColor: "#2e2e2e", color: TEXT }}
+    <div>
+      <h4 className="font-display text-chart-5 text-3xl mb-6 uppercase tracking-tight">
+        Pick a Date & Time
+      </h4>
+      <div className="grid md:grid-cols-2 gap-8">
+        <Calendar
+          mode="single"
+          // selected={selectedDate ? new Date(selectedDate) : undefined}
+          selected={
+            selectedDate ? new Date(selectedDate + "T00:00:00") : undefined
+          }
+          onSelect={(date) => {
+            if (!date) return
+            onDateChange(formatDate(date))
+          }}
+          // onSelect={(date) => onDateChange(date ? formatDate(date) : "")}
+          disabled={{ before: new Date() }}
+          className="rounded-sm bg-transparent border border-muted-foreground/30 p-5"
         />
-      </div>
-      <div>
-        <label className="flex items-center gap-2 text-sm font-medium mb-3" style={{ color: GRAY }}>
-          <Clock className="w-4 h-4" style={{ color: ROSE }} />
-          Available times
-        </label>
-        <div className="grid grid-cols-3 sm:grid-cols-5 gap-2">
-          {timeSlots.map((time) => {
-            const active = selectedTime === time
-            return (
-              <button
-                key={time}
-                type="button"
-                onClick={() => onTimeChange(time)}
-                className="rounded-lg border py-2 text-sm font-medium transition-all"
-                style={
-                  active
-                    ? { backgroundColor: ROSE, borderColor: ROSE, color: DARK }
-                    : { backgroundColor: PANEL_ALT, borderColor: "#2e2e2e", color: GRAY }
-                }
-              >
-                {time}
-              </button>
-            )
-          })}
+
+        <div>
+          <div className="grid grid-cols-3 gap-2">
+            {timeSlots.map((time) => {
+              const isSelected = selectedTime === time;
+              const disabled = !selectedDate;
+
+              return (
+                <button
+                  key={time}
+                  type="button"
+                  disabled={disabled}
+                  onClick={() => onTimeChange(time)}
+                  className={cn(
+                    "rounded-sm border py-3 text-sm font-medium transition-all",
+                    "bg-transparent text-[#9F9F9F] border-muted-foreground/30",
+                    disabled && "pointer-events-none",
+                    isSelected && "bg-chart-5 text-primary border-chart-5"
+                  )}
+                >
+                  {time}
+                </button>
+              );
+            })}
+          </div>
         </div>
       </div>
-    </>
-  )
+    </div>
+  );
 }

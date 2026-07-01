@@ -1,41 +1,45 @@
-import { Check } from "lucide-react"
-import { steps, ROSE, GRAY, BORDER, PANEL, DARK, TEXT } from "../constants"
+import { steps } from "../constants";
 
 export function StepIndicator({ currentStep }: { currentStep: number }) {
   return (
-    <div className="flex items-center gap-2 mb-8">
+    <div className="flex items-center gap-2 md:gap-6 mb-6">
       {steps.map((s, i) => {
-        const isActive = currentStep === s.step
-        const isDone = currentStep > s.step
+        const active = currentStep === s.step;
+        const done = currentStep > s.step;
+
         return (
-          <div key={s.step} className="flex items-center gap-2 flex-1 last:flex-none">
+          <div
+            key={s.step}
+            className="flex items-center gap-2 md:gap-6 flex-1"
+          >
             <div className="flex items-center gap-3">
               <span
-                className="flex items-center justify-center w-7 h-7 rounded-full text-sm font-bold shrink-0 transition-colors"
-                style={
-                  isActive || isDone
-                    ? { backgroundColor: ROSE, color: DARK }
-                    : { backgroundColor: PANEL, color: GRAY, border: `1px solid ${BORDER}` }
-                }
+                className={`font-display text-2xl ${
+                  active || done ? "text-chart-5" : "text-muted-foreground/60"
+                }`}
               >
-                {isDone ? <Check className="w-4 h-4" /> : s.step}
+                {String(s.step).padStart(2, "0")}
               </span>
+
               <span
-                className="text-sm font-semibold hidden sm:block whitespace-nowrap"
-                style={{ color: isActive || isDone ? TEXT : GRAY }}
+                className={`hidden md:inline text-xs uppercase tracking-widest ${
+                  active ? "text-chart-5" : "text-primary-foreground/60"
+                }`}
               >
                 {s.title}
               </span>
             </div>
+
             {i < steps.length - 1 && (
-              <span
-                className="hidden sm:block flex-1 h-px mx-2"
-                style={{ backgroundColor: currentStep > s.step ? ROSE : BORDER }}
+              <div
+                className={`flex-1 h-px ${
+                  done ? "bg-chart-5" : "bg-muted-foreground/30"
+                }`}
               />
             )}
           </div>
-        )
+        );
       })}
     </div>
-  )
+  );
 }

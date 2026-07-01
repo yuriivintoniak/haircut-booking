@@ -15,23 +15,51 @@ export const services: Service[] = [
 
 export const stylists = ["No preference", "Alex Romero", "Mia Chen", "Jordan Blake"]
 
+export type Barber = {
+  id: number;
+  name: string;
+  role: string;
+  years: string;
+};
+
+// export const barbe = [
+//   { id: 1, name: "Marcus J.", role: "Senior Barber", years: "12 yrs" },
+//   { id: 2, name: "Alex R.", role: "Stylist", years: "6 yrs" },
+//   { id: 3, name: "David K.", role: "Master Barber", years: "18 yrs" },
+// ]
+
+export const barbers: Barber[] = [
+  { id: 1, name: "Marcus Johnson", role: "Master Barber", years: "7 years" },
+  { id: 2, name: "Alex Rodriguez", role: "Stylist", years: "8 years" },
+  { id: 3, name: "David Kim", role: "Master Barber", years: "4 years" },
+  { id: 4, name: "Alex Romero", role: "Senior Barber", years: "7 years" },
+  { id: 5, name: "Mia Chen", role: "Stylist", years: "5 years" },
+  { id: 6, name: "Jordan Blake", role: "Senior Barber", years: "10 years" },
+];
+
 export const timeSlots = [
-  "09:00",
-  "10:00",
-  "11:00",
-  "12:00",
-  "13:00",
-  "14:00",
-  "15:00",
-  "16:00",
-  "17:00",
-  "18:00",
-]
+  "9:00 AM", "9:30 AM", "10:00 AM", "10:30 AM",
+  "11:00 AM", "11:30 AM", "1:00 PM", "1:30 PM",
+  "2:00 PM", "2:30 PM", "3:00 PM", "3:30 PM",
+];
+
+// export const timeSlots = [
+//   "09:00",
+//   "10:00",
+//   "11:00",
+//   "12:00",
+//   "13:00",
+//   "14:00",
+//   "15:00",
+//   "16:00",
+//   "17:00",
+//   "18:00",
+// ]
 
 export const steps = [
-  { step: 1, title: "Choose a service" },
-  { step: 2, title: "Pick your stylist" },
-  { step: 3, title: "Select date & time" },
+  { step: 1, title: "Service" },
+  { step: 2, title: "Barber" },
+  { step: 3, title: "Date & Time" },
 ]
 
 // Shared palette

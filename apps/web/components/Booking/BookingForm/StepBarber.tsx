@@ -1,34 +1,49 @@
-import { User } from "lucide-react";
-import { stylists, GRAY, ROSE, PANEL, BORDER, DARK } from "../constants";
+import { Barber, barbers } from "../constants";
 
-type Props = {
-  // selectedStylist: string;
-  selectedStylist: string | null;
-  onSelect: (stylist: string) => void;
+type StepBarberProps = {
+  selectedBarber: Barber | null;
+  onSelect: (barber: Barber) => void;
 };
 
-export function StepBarber({ selectedStylist, onSelect }: Props) {
+export function StepBarber({ selectedBarber, onSelect }: StepBarberProps) {
   return (
-    <div className="flex flex-wrap gap-2.5">
-      {stylists.map((s) => {
-        const active = selectedStylist === s
-        return (
-          <button
-            key={s}
-            type="button"
-            onClick={() => onSelect(s)}
-            className="inline-flex items-center gap-2 rounded-full border px-4 py-2 text-sm font-medium transition-all"
-            style={
-              active
-                ? { backgroundColor: ROSE, borderColor: ROSE, color: DARK }
-                : { backgroundColor: PANEL, borderColor: BORDER, color: GRAY }
-            }
-          >
-            <User className="w-4 h-4" />
-            {s}
-          </button>
-        );
-      })}
+    <div>
+      <h4 className="font-display text-chart-5 text-3xl mb-6 uppercase tracking-tight">
+        Choose Your Barber
+      </h4>
+      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {barbers.map((b) => {
+          const active = selectedBarber?.id === b.id;
+
+          return (
+            <button
+              key={b.id}
+              onClick={() => onSelect(b)}
+              className={`p-5 text-center cursor-pointer transition-all duration-200 border ${
+                active
+                  ? "border-chart-5 bg-chart-5/10"
+                  : "border-muted-foreground/30 bg-transparent"
+              }`}
+            >
+              <div
+                className={`font-display text-xl uppercase tracking-tight ${
+                  active ? "text-chart-5" : "text-primary-foreground/60"
+                }`}
+              >
+                {b.name}
+              </div>
+
+              <div className="text-[#9F9F9F] text-xs mt-1 uppercase tracking-widest">
+                {b.role}
+              </div>
+
+              <div className="text-primary-accent text-xs mt-2">
+                {b.years} experience
+              </div>
+            </button>
+          );
+        })}
+      </div>
     </div>
   );
 }
