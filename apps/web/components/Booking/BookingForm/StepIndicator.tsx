@@ -10,7 +10,9 @@ export function StepIndicator({ currentStep }: { currentStep: number }) {
         return (
           <div
             key={s.step}
-            className="flex items-center gap-2 md:gap-6 flex-1"
+            className={`flex items-center gap-2 md:gap-6 ${
+              i < steps.length - 1 ? "flex-1" : "xs:flex-1"
+            }`}
           >
             <div className="flex items-center gap-3">
               <span

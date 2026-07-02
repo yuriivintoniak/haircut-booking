@@ -28,10 +28,9 @@ export function StepDateTime({
       <h4 className="font-display text-chart-5 text-3xl mb-6 uppercase tracking-tight">
         Pick a Date & Time
       </h4>
-      <div className="grid md:grid-cols-2 gap-8">
+      <div className="grid sm:grid-cols-2 gap-8 sm:gap-4">
         <Calendar
           mode="single"
-          // selected={selectedDate ? new Date(selectedDate) : undefined}
           selected={
             selectedDate ? new Date(selectedDate + "T00:00:00") : undefined
           }
@@ -39,9 +38,8 @@ export function StepDateTime({
             if (!date) return
             onDateChange(formatDate(date))
           }}
-          // onSelect={(date) => onDateChange(date ? formatDate(date) : "")}
           disabled={{ before: new Date() }}
-          className="rounded-sm bg-transparent border border-muted-foreground/30 p-5"
+          className="w-full rounded-sm bg-transparent border border-muted-foreground/30 p-5"
         />
 
         <div>
@@ -57,7 +55,7 @@ export function StepDateTime({
                   disabled={disabled}
                   onClick={() => onTimeChange(time)}
                   className={cn(
-                    "rounded-sm border py-3 text-sm font-medium transition-all",
+                    "rounded-sm border py-3 text-sm sm:text-xs font-medium transition-all",
                     "bg-transparent text-[#9F9F9F] border-muted-foreground/30",
                     disabled && "pointer-events-none",
                     isSelected && "bg-chart-5 text-primary border-chart-5"

@@ -3,19 +3,19 @@
 import { useState } from "react";
 import { BookingForm } from "./BookingForm/BookingForm";
 import { BookingSummary } from "./BookingSummary/BookingSummary";
-import { services, stylists, steps, type Service, ORANGE, GRAY, ROSE, Barber } from "./constants";
+import { type Service, Barber, steps } from "./constants";
 
 export function Booking() {
-  const [currentStep, setCurrentStep] = useState(1)
+  const [currentStep, setCurrentStep] = useState(1);
   const [selectedService, setSelectedService] = useState<Service | null>(null);
   const [selectedBarber, setSelectedBarber] = useState<Barber | null>(null);
   const [selectedDate, setSelectedDate] = useState<string | null>(null);
   const [selectedTime, setSelectedTime] = useState<string | null>(null);
 
-  const handleNext = () => setCurrentStep((s) => Math.min(s + 1, steps.length))
-  const handleBack = () => setCurrentStep((s) => Math.max(s - 1, 1))
+  const handleNext = () => setCurrentStep((s) => Math.min(s + 1, steps.length));
+  const handleBack = () => setCurrentStep((s) => Math.max(s - 1, 1));
 
-  const canConfirm = Boolean(selectedDate && selectedTime)
+  const canConfirm = Boolean(selectedDate && selectedTime);
 
   return (
     <section id="booking" className="py-20 px-4 md:px-8 bg-primary">

@@ -12,7 +12,7 @@ export function StepService({ selectedService, onSelect }: StepServiceProps) {
       <h4 className="font-display text-chart-5 text-3xl mb-6 uppercase tracking-tight">
         Choose Your Service
       </h4>
-      <div className="grid sm:grid-cols-2 gap-6">
+      <div className="grid xs:grid-cols-2 gap-6">
         {services.map((s) => {
           const isSelected = selectedService?.name === s.name;
 

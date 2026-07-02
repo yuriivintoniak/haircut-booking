@@ -1,8 +1,8 @@
 export type Service = {
-  name: string
-  duration: number
-  price: number
-}
+  name: string;
+  duration: number;
+  price: number;
+};
 
 export const services: Service[] = [
   { name: "Classic Haircut", duration: 45, price: 40 },
@@ -11,9 +11,7 @@ export const services: Service[] = [
   { name: "Hair Styling", duration: 40, price: 50 },
   { name: "Hot Towel Shave", duration: 30, price: 30 },
   { name: "Facial Treatment", duration: 35, price: 45 },
-]
-
-export const stylists = ["No preference", "Alex Romero", "Mia Chen", "Jordan Blake"]
+];
 
 export type Barber = {
   id: number;
@@ -21,12 +19,6 @@ export type Barber = {
   role: string;
   years: string;
 };
-
-// export const barbe = [
-//   { id: 1, name: "Marcus J.", role: "Senior Barber", years: "12 yrs" },
-//   { id: 2, name: "Alex R.", role: "Stylist", years: "6 yrs" },
-//   { id: 3, name: "David K.", role: "Master Barber", years: "18 yrs" },
-// ]
 
 export const barbers: Barber[] = [
   { id: 1, name: "Marcus Johnson", role: "Master Barber", years: "7 years" },
@@ -43,31 +35,8 @@ export const timeSlots = [
   "2:00 PM", "2:30 PM", "3:00 PM", "3:30 PM",
 ];
 
-// export const timeSlots = [
-//   "09:00",
-//   "10:00",
-//   "11:00",
-//   "12:00",
-//   "13:00",
-//   "14:00",
-//   "15:00",
-//   "16:00",
-//   "17:00",
-//   "18:00",
-// ]
-
 export const steps = [
   { step: 1, title: "Service" },
   { step: 2, title: "Barber" },
   { step: 3, title: "Date & Time" },
-]
-
-// Shared palette
-export const ORANGE = "#FE9A00"
-export const GRAY = "#9F9F9F"
-export const ROSE = "#C08081"
-export const PANEL = "#1c1c1c"
-export const PANEL_ALT = "#1f1f1f"
-export const BORDER = "#2a2a2a"
-export const TEXT = "#e5e5e5"
-export const DARK = "#171717"
+];

@@ -33,7 +33,7 @@ export function BookingForm({
   onNext,
 }: BookingFormProps) {
   return (
-    <div className="h-full min-h-[650px] flex flex-col rounded-sm border border-muted-foreground/30 p-6 md:p-8">
+    <div className="h-full min-h-[44.375rem] flex flex-col rounded-sm border border-muted-foreground/30 p-6 md:p-8">
       <StepIndicator currentStep={currentStep} />
 
       <div className="flex-1">
