@@ -12,8 +12,31 @@ export function Booking() {
   const [selectedDate, setSelectedDate] = useState<string | null>(null);
   const [selectedTime, setSelectedTime] = useState<string | null>(null);
 
-  const handleNext = () => setCurrentStep((s) => Math.min(s + 1, steps.length));
-  const handleBack = () => setCurrentStep((s) => Math.max(s - 1, 1));
+  function canGoToNextStep() {
+    switch (currentStep) {
+      case 1:
+        return Boolean(selectedService);
+
+      case 2:
+        return Boolean(selectedBarber);
+
+      case 3:
+        return Boolean(selectedDate && selectedTime);
+
+      default:
+        return false;
+    }
+  }
+
+  function handleNext() {
+    if (!canGoToNextStep()) return;
+
+    setCurrentStep((step) => Math.min(step + 1, steps.length));
+  }
+
+  function handleBack() {
+    setCurrentStep((step) => Math.max(step - 1, 1));
+  }
 
   const canConfirm = Boolean(selectedDate && selectedTime);
 
