@@ -38,7 +38,12 @@ export function Booking() {
     setCurrentStep((step) => Math.max(step - 1, 1));
   }
 
-  const canConfirm = Boolean(selectedDate && selectedTime);
+  const canConfirm = Boolean(
+    selectedService &&
+    selectedBarber &&
+    selectedDate &&
+    selectedTime
+  );
 
   return (
     <section id="booking" className="py-20 px-4 md:px-8 bg-primary">
