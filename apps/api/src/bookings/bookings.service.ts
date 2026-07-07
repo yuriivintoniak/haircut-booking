@@ -1,11 +1,16 @@
-import { Injectable } from '@nestjs/common';
-import { CreateBookingDto } from './dto/create-booking.dto';
-import { UpdateBookingDto } from './dto/update-booking.dto';
+import { Injectable } from "@nestjs/common";
+import { PrismaService } from "../prisma/prisma.service";
+import { CreateBookingDto } from "./dto/create-booking.dto";
+import { UpdateBookingDto } from "./dto/update-booking.dto";
 
 @Injectable()
 export class BookingsService {
-  create(createBookingDto: CreateBookingDto) {
-    return 'This action adds a new booking';
+  constructor(private readonly prisma: PrismaService) {}
+
+  async create(createBookingDto: CreateBookingDto) {
+    return this.prisma.client.booking.create({
+      data: createBookingDto,
+    });
   }
 
   findAll() {
