@@ -48,28 +48,14 @@ jobs:
       - name: Generate Prisma client
         run: pnpm --filter @repo/db db:generate
 
+      - name: Build database package
+        run: pnpm --filter @repo/db build
+
       - name: Migrate database
         run: pnpm --filter @repo/db db:deploy
 
       - name: Install Playwright browsers
         run: pnpm --filter web exec playwright install --with-deps
-
-      - name: Debug workspace
-        run: |
-          echo "=== @repo packages in web ==="
-          ls -l apps/web/node_modules/@repo || true
-
-          echo "=== database root ==="
-          ls -la packages/database
-
-          echo "=== database dist ==="
-          ls -R packages/database/dist || true
-
-          echo "=== database generated ==="
-          ls -R packages/database/generated || true
-
-          echo "=== database package.json ==="
-          cat packages/database/package.json
 
       - name: Run Playwright tests
         run: pnpm --filter web exec playwright test
