@@ -123,6 +123,7 @@ export function Booking() {
               selectedTime={selectedTime}
               canConfirm={canConfirm}
               onConfirm={handleConfirm}
+              isPending={createBookingMutation.isPending}
             />
           </div>
         </div>
