@@ -2,7 +2,9 @@
 
 import { useState } from "react";
 import { useMutation } from "@tanstack/react-query";
+import { toast } from "@repo/ui/components/sonner";
 import { createBooking } from "../../api/bookings";
+import { useSession } from "../../lib/auth-client";
 import { ICreateBooking } from "../../types/booking.interface";
 import { formatAppointmentAt } from "./utils";
 import { type Service, Barber, steps } from "./constants";
@@ -10,6 +12,7 @@ import { BookingForm } from "./BookingForm/BookingForm";
 import { BookingSummary } from "./BookingSummary/BookingSummary";
 
 export function Booking() {
+  const { data: session } = useSession();
   const [currentStep, setCurrentStep] = useState(1);
   const [selectedService, setSelectedService] = useState<Service | null>(null);
   const [selectedBarber, setSelectedBarber] = useState<Barber | null>(null);
@@ -42,6 +45,17 @@ export function Booking() {
     setCurrentStep((step) => Math.max(step - 1, 1));
   }
 
+  function handleServiceSelect(service: Service) {
+    if (!session) {
+      toast.error("Authentication required", {
+        description: "Please sign in to book an appointment.",
+      });
+      return;
+    }
+
+    setSelectedService(service);
+  }
+
   const canConfirm = Boolean(
     selectedService &&
     selectedBarber &&
@@ -61,7 +75,7 @@ export function Booking() {
 
   function handleConfirm() {
     const payload: ICreateBooking = {
-      userId: "25fI46nGeFC4RmpGPcgX0F5Itp8OTY66",
+      userId: session!.user.id,
       service: selectedService!.name,
       barber: selectedBarber!.name,
       appointmentAt: formatAppointmentAt(selectedDate!, selectedTime!),
@@ -92,7 +106,7 @@ export function Booking() {
               selectedBarber={selectedBarber}
               selectedDate={selectedDate}
               selectedTime={selectedTime}
-              onServiceSelect={setSelectedService}
+              onServiceSelect={handleServiceSelect}
               onBarberSelect={setSelectedBarber}
               onDateChange={setSelectedDate}
               onTimeChange={setSelectedTime}
