@@ -1,9 +1,13 @@
 "use client";
 
 import { useState } from "react";
+import { useMutation } from "@tanstack/react-query";
+import { createBooking } from "../../api/bookings";
+import { ICreateBooking } from "../../types/booking.interface";
+import { formatAppointmentAt } from "./utils";
+import { type Service, Barber, steps } from "./constants";
 import { BookingForm } from "./BookingForm/BookingForm";
 import { BookingSummary } from "./BookingSummary/BookingSummary";
-import { type Service, Barber, steps } from "./constants";
 
 export function Booking() {
   const [currentStep, setCurrentStep] = useState(1);
@@ -45,6 +49,27 @@ export function Booking() {
     selectedTime
   );
 
+  const createBookingMutation = useMutation({
+    mutationFn: createBooking,
+    onError: (error) => {
+      console.error("Error:", error);
+    },
+    onSuccess: (data) => {
+      console.log("Success:", data);
+    },
+  });
+
+  function handleConfirm() {
+    const payload: ICreateBooking = {
+      userId: "25fI46nGeFC4RmpGPcgX0F5Itp8OTY66",
+      service: selectedService!.name,
+      barber: selectedBarber!.name,
+      appointmentAt: formatAppointmentAt(selectedDate!, selectedTime!),
+    };
+
+    createBookingMutation.mutate(payload);
+  }
+
   return (
     <section id="booking" className="py-20 px-4 md:px-8 bg-primary">
       <div className="max-w-[1400px] mx-auto">
@@ -83,6 +108,7 @@ export function Booking() {
               selectedDate={selectedDate}
               selectedTime={selectedTime}
               canConfirm={canConfirm}
+              onConfirm={handleConfirm}
             />
           </div>
         </div>
