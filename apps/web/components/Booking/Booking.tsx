@@ -68,8 +68,16 @@ export function Booking() {
     onError: (error) => {
       console.error("Error:", error);
     },
-    onSuccess: (data) => {
-      console.log("Success:", data);
+    onSuccess: () => {
+      setTimeout(() => {
+        setCurrentStep(1);
+        setSelectedService(null);
+        setSelectedBarber(null);
+        setSelectedDate(null);
+        setSelectedTime(null);
+
+        createBookingMutation.reset();
+      }, 3000);
     },
   });
 
