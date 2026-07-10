@@ -9,6 +9,7 @@ type BookingSummaryProps = {
   canConfirm: boolean;
   onConfirm: () => void;
   isPending: boolean;
+  isSuccess: boolean;
 };
 
 export function BookingSummary({
@@ -19,6 +20,7 @@ export function BookingSummary({
   canConfirm,
   onConfirm,
   isPending,
+  isSuccess,
 }: BookingSummaryProps) {
   const rows = [
     { label: "Service", value: selectedService?.name ?? "—" },
@@ -62,15 +64,21 @@ export function BookingSummary({
         </span>
       </div>
 
-      <button
-        type="button"
-        onClick={onConfirm}
-        disabled={!canConfirm || isPending}
-        className="w-full inline-flex items-center justify-center gap-2 bg-chart-5 rounded-sm px-8 py-3.5 mt-6 font-semibold cursor-pointer disabled:cursor-default transition-opacity hover:opacity-90 disabled:opacity-70"
-      >
-        <Check className="w-5 h-5" />
-        {isPending ? "Confirming..." : "Confirm Booking"}
-      </button>
+      {isSuccess ? (
+        <div className="mt-6 px-8 py-3.5 text-center text-chart-5 font-semibold">
+          Booking confirmed!
+        </div>
+      ) : (
+        <button
+          type="button"
+          onClick={onConfirm}
+          disabled={!canConfirm || isPending}
+          className="w-full inline-flex items-center justify-center gap-2 bg-chart-5 rounded-sm mt-6 px-8 py-3.5 font-semibold cursor-pointer disabled:cursor-default transition-opacity hover:opacity-90 disabled:opacity-70"
+        >
+          <Check className="w-5 h-5" />
+          {isPending ? "Confirming..." : "Confirm Booking"}
+        </button>
+      )}
     </div>
   );
 }

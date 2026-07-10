@@ -124,6 +124,7 @@ export function Booking() {
               canConfirm={canConfirm}
               onConfirm={handleConfirm}
               isPending={createBookingMutation.isPending}
+              isSuccess={createBookingMutation.isSuccess}
             />
           </div>
         </div>
