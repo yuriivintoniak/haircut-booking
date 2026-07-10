@@ -9,6 +9,7 @@ type BookingSummaryProps = {
   canConfirm: boolean;
   onConfirm: () => void;
   isPending: boolean;
+  isError: boolean;
   isSuccess: boolean;
 };
 
@@ -20,6 +21,7 @@ export function BookingSummary({
   canConfirm,
   onConfirm,
   isPending,
+  isError,
   isSuccess,
 }: BookingSummaryProps) {
   const rows = [
@@ -52,17 +54,23 @@ export function BookingSummary({
         ))}
       </ul>
 
-      {/* Spacer pushes total + button to the bottom to match form height */}
-      <div className="flex-1" />
-
-      <div className="flex items-center justify-between mt-8 py-2.5 px-3.5 rounded-sm border bg-[#1f1f1f] border-chart-5/30">
-        <span className="text-primary-foreground/60 text-sm uppercase tracking-widest">
+      <div className="flex items-center justify-between py-3 font-medium rounded-sm">
+        <span className="text-primary-accent text-sm uppercase tracking-widest">
           Total
         </span>
-        <span className="font-display text-chart-5 text-2xl font-medium">
+        <span className="font-display text-chart-5 text-2xl">
           ${selectedService?.price ?? 0}
         </span>
       </div>
+
+      {/* Spacer pushes total + button to the bottom to match form height */}
+      <div className="flex-1" />
+
+      {isError && (
+        <div className="mt-6 px-8 text-center text-primary-accent font-medium">
+          Failed to confirm booking! Please try again.
+        </div>
+      )}
 
       {isSuccess ? (
         <div className="mt-6 px-8 py-3.5 text-center text-chart-5 font-semibold">
