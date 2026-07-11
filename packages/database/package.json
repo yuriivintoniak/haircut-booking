@@ -3,12 +3,14 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
+    "build": "tsup",
     "db:generate": "prisma generate",
     "db:migrate": "prisma migrate dev",
     "db:deploy": "prisma migrate deploy"
   },
   "devDependencies": {
-    "prisma": "^7.8.0"
+    "prisma": "^7.8.0",
+    "tsup": "8.5.1"
   },
   "dependencies": {
     "@prisma/adapter-pg": "^7.8.0",
@@ -16,7 +18,19 @@
     "dotenv": "^17.4.2",
     "pg": "^8.20.0"
   },
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "exports": {
-    ".": "./src/index.ts"
+    ".": {
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      },
+      "require": {
+        "types": "./dist/index.d.cts",
+        "default": "./dist/index.cjs"
+      }
+    }
   }
 }

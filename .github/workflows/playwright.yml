@@ -14,7 +14,8 @@ jobs:
     env:
       BETTER_AUTH_SECRET: ${{ secrets.BETTER_AUTH_SECRET }}
       DATABASE_URL: "postgresql://postgres:supersecretpassword@localhost:5432/my_test_db?schema=public"
-      NEXT_PUBLIC_BETTER_AUTH_URL: "http://localhost:3001"
+      NEXT_PUBLIC_API_URL: ${{ vars.NEXT_PUBLIC_API_URL }}
+      NEXT_PUBLIC_BETTER_AUTH_URL: ${{ vars.NEXT_PUBLIC_BETTER_AUTH_URL }}
       NODE_ENV: test
 
     services:
@@ -47,6 +48,9 @@ jobs:
 
       - name: Generate Prisma client
         run: pnpm --filter @repo/db db:generate
+
+      - name: Build database package
+        run: pnpm --filter @repo/db build
 
       - name: Migrate database
         run: pnpm --filter @repo/db db:deploy
