@@ -185,8 +185,8 @@ input:-webkit-autofill:active {
   }
 
   .btn-primary {
-    @apply bg-accent rounded-sm py-4 cursor-pointer;
-    @apply font-semibold uppercase 2xs:tracking-widest;
+    @apply text-foreground bg-accent rounded-sm px-4 py-2;
+    @apply uppercase cursor-pointer;
     @apply transition-all duration-300 hover:bg-chart-5;
   }
 
