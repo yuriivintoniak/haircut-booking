@@ -14,7 +14,7 @@ import { MenuIcon } from "./MenuIcon";
 import { headerNavigation } from "../Header/constants";
 import { signOut, useSession } from "../../lib/auth-client";
 
-const linkClass = "block my-8 text-lg text-primary-accent";
+const linkClass = "block my-8";
 
 export function MobileMenu() {
   const { data: session } = useSession();
@@ -40,20 +40,20 @@ export function MobileMenu() {
             <a
               key={navItem.href}
               href={navItem.href}
-              className={`${linkClass} text-primary-foreground`}
+              className={`${linkClass} nav-link nav-link-primary`}
             >
               {navItem.label}
             </a>
           ))}
           {session ? (
-            <button 
-              onClick={() => signOut()} 
-              className={`${linkClass} text-left cursor-pointer`}
+            <button
+              onClick={() => signOut()}
+              className={`${linkClass} nav-link nav-link-accent text-left cursor-pointer`}
             >
               Sign out
             </button>
           ) : (
-            <Link href="/sign-in" className={linkClass}>
+            <Link href="/sign-in" className={`${linkClass} nav-link nav-link-accent`}>
               Sign in
             </Link>
           )}

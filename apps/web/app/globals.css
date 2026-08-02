@@ -173,12 +173,28 @@ input:-webkit-autofill:active {
 }
 
 @layer components {
+  /* layout */
   .header {
     @apply fixed top-0 left-0 z-30 w-full;
     @apply py-4 px-4 md:px-8;
     @apply bg-primary/80 backdrop-blur-md;
   }
 
+  /* navigation */
+  .nav-link {
+    @apply text-lg uppercase tracking-tighter;
+    @apply transition-colors duration-300 hover:text-chart-5;
+  }
+
+  .nav-link-primary {
+    @apply text-primary-foreground;
+  }
+
+  .nav-link-accent {
+    @apply text-primary-accent;
+  }
+
+  /* buttons */
   .btn {
     @apply bg-transparent text-primary-accent;
     @apply px-5 py-2;
@@ -191,6 +207,7 @@ input:-webkit-autofill:active {
     @apply uppercase cursor-pointer hover:bg-chart-5;
   }
 
+  /* forms */
   .input-group {
     @apply p-4 border border-primary/25 rounded-md bg-card;
     @apply focus-within:border-chart-5;
