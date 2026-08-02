@@ -13,7 +13,7 @@ export const headerNavigation: NavItem[] = [
     href: "#gallery"
   },
   {
-    label: "Book Now",
+    label: "Book",
     href: "#booking"
-  },
+  }
 ];
