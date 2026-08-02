@@ -12,36 +12,41 @@ export function Hero() {
           <Image
             src={heroImage}
             alt="Barbershop haircut"
-            fill={true}
-            className="object-cover opacity-60"
-            style={{ objectPosition: "left bottom" }}
+            fill
+            priority
+            className="object-cover object-[60%_center] opacity-80"
           />
         </div>
-        <div className="relative z-10 pt-20">
-          <h1 className="font-display text-primary-foreground text-7xl 2xs:text-8xl md:text-[10rem] lg:text-[12rem] leading-[0.85] tracking-tight uppercase text-right">
-            The Art<br />of the<br />Cut
+        <div className="relative z-10 pt-15">
+          <h1 className="font-display text-primary-foreground text-7xl 2xs:text-8xl md:text-[8rem] lg:text-[10rem] leading-[0.85] tracking-tight uppercase text-left">
+            The Art of<br />the Cut
           </h1>
         </div>
-        <div className="relative z-10 pt-10 flex flex-col items-end">
-          <div className="w-full max-w-md divide-y divide-primary-foreground/20">
+        <div className="relative z-10 pt-15">
+          <div className="w-full max-w-sm divide-y divide-primary-foreground/30">
             {services.map((service) => (
               <div
                 key={service.name}
-                className="flex justify-between items-center py-3 font-display text-lg 2xs:text-xl md:text-2xl text-primary-foreground"
+                className="group h-14 flex justify-between items-center py-3 text-base md:text-lg text-primary-foreground font-medium"
               >
-                <span className="uppercase tracking-wide">
-                  {service.name}
-                </span>
-                <span>{service.price}</span>
+                <span>{service.name}</span>
+                <div className="relative h-8 w-24">
+                  <span className="absolute inset-0 flex items-center justify-end transition-opacity duration-300 group-hover:opacity-0">
+                    {service.price}
+                  </span>
+                  <Link
+                    href="#booking"
+                    className="absolute inset-0 flex items-center justify-end opacity-0 transition-all duration-300 group-hover:opacity-100 btn-primary text-xs md:text-sm"
+                  >
+                    <span className="flex items-center justify-center gap-1">
+                      Book
+                      <ArrowRight size={18} />
+                    </span>
+                  </Link>
+                </div>
               </div>
             ))}
           </div>
-          <Link href="/booking" className="btn-primary group w-full max-w-md">
-            <span className="flex items-center justify-center gap-2">
-              Book Now
-              <ArrowRight className="group-hover:translate-x-1 duration-300" />
-            </span>
-          </Link>
         </div>
       </div>
     </section>

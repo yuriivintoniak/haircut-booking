@@ -21,11 +21,11 @@ export const services: Service[] = [
     price: "$50"
   },
   {
+    name: "Full Package",
+    price: "$75"
+  },
+  {
     name: "Facial Treatments",
     price: "$45"
   },
-  {
-    name: "Full Package",
-    price: "$75"
-  }
 ];
