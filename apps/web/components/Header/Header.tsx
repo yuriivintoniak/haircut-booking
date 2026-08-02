@@ -35,11 +35,11 @@ export function Header() {
         <HeaderNavigation />
         <div className="hidden lg:flex items-center">
           {session ? (
-            <button onClick={handleSignOut} className="btn">
+            <button onClick={handleSignOut} className="btn nav-link cursor-pointer">
               Sign out
             </button>
           ) : (
-            <Link href="/sign-in" className="btn">
+            <Link href="/sign-in" className="btn nav-link">
               Sign in
             </Link>
           )}

@@ -198,19 +198,22 @@ input:-webkit-autofill:active {
   .btn {
     @apply bg-transparent text-primary-accent;
     @apply px-5 py-2;
-    @apply font-medium uppercase tracking-tighter;
-    @apply cursor-pointer transition-transform duration-300 hover:scale-[1.05];
   }
 
   .btn-primary {
-    @apply text-foreground bg-accent rounded-sm px-4 py-2;
-    @apply uppercase cursor-pointer hover:bg-chart-5;
+    @apply bg-accent text-foreground rounded-sm;
+    @apply px-4 py-2;
+    @apply uppercase;
+    @apply cursor-pointer;
+    @apply hover:bg-chart-5;
   }
 
   /* forms */
   .input-group {
-    @apply p-4 border border-primary/25 rounded-md bg-card;
-    @apply focus-within:border-chart-5;
     @apply flex flex-row items-center gap-2;
+    @apply p-4;
+    @apply border border-primary/25 rounded-md;
+    @apply bg-card;
+    @apply focus-within:border-chart-5;
   }
 }
