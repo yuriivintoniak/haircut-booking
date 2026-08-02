@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import {
   Sheet,
@@ -29,7 +30,9 @@ export function MobileMenu() {
         <SheetContent showCloseButton={false} className="bg-primary p-4 gap-0">
           <SheetHeader>
             <SheetTitle>
-              <a href="#hero">TrimSync</a>
+              <a href="#">
+                <Image src="/logo.svg" alt="logo" width={36} height={36} />
+              </a>
             </SheetTitle>
             <SheetDescription />
           </SheetHeader>

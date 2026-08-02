@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
@@ -28,9 +29,9 @@ export function Header() {
   return (
     <header className="header">
       <div className="max-w-[1400px] mx-auto flex items-center justify-between">
-        <div className="font-display text-primary-foreground text-2xl uppercase tracking-wider">
-          <a href="#">TrimSync</a>
-        </div>
+        <a href="#">
+          <Image src="/logo.svg" alt="logo" width={36} height={36} />
+        </a>
         <HeaderNavigation />
         <div className="hidden lg:flex items-center">
           {session ? (
