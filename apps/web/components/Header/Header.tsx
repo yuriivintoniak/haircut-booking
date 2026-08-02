@@ -31,17 +31,14 @@ export function Header() {
         <div className="font-display text-primary-foreground text-2xl uppercase tracking-wider">
           <a href="#">TrimSync</a>
         </div>
-        <div className="hidden lg:flex items-center gap-6">
-          <HeaderNavigation />
-          <a href="#booking" className="btn bg-accent">
-            Book
-          </a>
+        <HeaderNavigation />
+        <div className="hidden lg:flex items-center">
           {session ? (
-            <button onClick={handleSignOut} className="btn bg-primary-accent cursor-pointer">
+            <button onClick={handleSignOut} className="btn">
               Sign out
             </button>
           ) : (
-            <Link href="/sign-in" className="btn bg-primary-accent">
+            <Link href="/sign-in" className="btn">
               Sign in
             </Link>
           )}

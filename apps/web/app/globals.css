@@ -180,8 +180,10 @@ input:-webkit-autofill:active {
   }
 
   .btn {
-    @apply font-medium rounded-sm py-2 px-5;
-    @apply transition-all duration-300 hover:scale-[1.05];
+    @apply bg-transparent text-primary-accent;
+    @apply px-5 py-2;
+    @apply font-medium uppercase tracking-tighter;
+    @apply cursor-pointer transition-transform duration-300 hover:scale-[1.05];
   }
 
   .btn-primary {
