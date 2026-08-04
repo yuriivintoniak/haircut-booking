@@ -173,25 +173,47 @@ input:-webkit-autofill:active {
 }
 
 @layer components {
+  /* layout */
   .header {
     @apply fixed top-0 left-0 z-30 w-full;
     @apply py-4 px-4 md:px-8;
     @apply bg-primary/80 backdrop-blur-md;
   }
 
+  /* navigation */
+  .nav-link {
+    @apply text-lg uppercase tracking-tighter;
+    @apply transition-colors duration-300 hover:text-chart-5;
+  }
+
+  .nav-link-primary {
+    @apply text-primary-foreground;
+  }
+
+  .nav-link-accent {
+    @apply text-primary-accent;
+  }
+
+  /* buttons */
   .btn {
-    @apply font-medium rounded-sm py-2 px-5;
-    @apply transition-all duration-300 hover:scale-[1.05];
+    @apply bg-transparent text-primary-accent;
+    @apply px-5 py-2;
   }
 
   .btn-primary {
-    @apply text-foreground bg-accent rounded-sm px-4 py-2;
-    @apply uppercase cursor-pointer hover:bg-chart-5;
+    @apply bg-accent text-foreground rounded-sm;
+    @apply px-4 py-2;
+    @apply uppercase;
+    @apply cursor-pointer;
+    @apply hover:bg-chart-5;
   }
 
+  /* forms */
   .input-group {
-    @apply p-4 border border-primary/25 rounded-md bg-card;
-    @apply focus-within:border-chart-5;
     @apply flex flex-row items-center gap-2;
+    @apply p-4;
+    @apply border border-primary/25 rounded-md;
+    @apply bg-card;
+    @apply focus-within:border-chart-5;
   }
 }

@@ -13,11 +13,7 @@ export const headerNavigation: NavItem[] = [
     href: "#gallery"
   },
   {
-    label: "Testimonials",
-    href: "#testimonials"
-  },
-  {
-    label: "Contact",
-    href: "#contact"
+    label: "Book",
+    href: "#booking"
   }
 ];

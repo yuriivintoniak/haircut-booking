@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import {
   Sheet,
@@ -13,7 +14,7 @@ import { MenuIcon } from "./MenuIcon";
 import { headerNavigation } from "../Header/constants";
 import { signOut, useSession } from "../../lib/auth-client";
 
-const linkClass = "text-lg block my-8";
+const linkClass = "block my-8";
 
 export function MobileMenu() {
   const { data: session } = useSession();
@@ -29,31 +30,30 @@ export function MobileMenu() {
         <SheetContent showCloseButton={false} className="bg-primary p-4 gap-0">
           <SheetHeader>
             <SheetTitle>
-              <a href="#hero">TrimSync</a>
+              <a href="#">
+                <Image src="/logo.svg" alt="logo" width={36} height={36} />
+              </a>
             </SheetTitle>
             <SheetDescription />
           </SheetHeader>
           {headerNavigation.map((navItem) => (
-            <Link
+            <a
               key={navItem.href}
               href={navItem.href}
-              className={`${linkClass} text-primary-foreground`}
+              className={`${linkClass} nav-link nav-link-primary`}
             >
               {navItem.label}
-            </Link>
+            </a>
           ))}
-          <a href="#booking" className={`${linkClass} text-accent`}>
-            Book
-          </a>
           {session ? (
-            <button 
-              onClick={() => signOut()} 
-              className={`${linkClass} text-primary-accent text-left cursor-pointer`}
+            <button
+              onClick={() => signOut()}
+              className={`${linkClass} nav-link nav-link-accent text-left cursor-pointer`}
             >
               Sign out
             </button>
           ) : (
-            <Link href="/sign-in" className={`${linkClass} text-primary-accent`}>
+            <Link href="/sign-in" className={`${linkClass} nav-link nav-link-accent`}>
               Sign in
             </Link>
           )}
